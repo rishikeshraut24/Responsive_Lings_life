@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lungs Guard</title>
+    <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap" rel="stylesheet">
+    <style>
+        /* Minimal custom styles for specific overrides */
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+      
+        .cursor {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            transition: transform 0.3s ease;
+        }
+        h1, h2, h4 {
+            font-family: 'Protest Guerrilla', sans-serif;
+        }
+        #btnc, #btnn {
+            background: orangered;
+            border: none;
+        }
+        .navbar {
+            background: #111;
+        }
+        footer {
+            background: #111;
+        }
+        #rechange{
+            color: red;
+        }
+        .navbar {
+        background: #111;
+        padding: 1.5rem 0; /* Increased padding for larger navbar */
+    }
+    .navbar-nav .nav-link {
+        text-transform: uppercase;
+        font-size: 1.25rem; /* Increased font size for nav links */
+        padding: 0.75rem 1.5rem;
+         /* Increased padding for larger clickable area */
+    }
+    .navbar-nav{
+
+        gap: 5rem;
+       
+
+    }
+    #navbarNav{
+        display: flex;
+        justify-content: space-evenly;
+
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="section" id="home">
+        <!-- Navbar -->
+     <nav class="navbar navbar-expand-lg">
+    <div class="container" >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav" >
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link text-white" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#about-section">About</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#program-section">Services</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#contact-section">Contact</a></li>
+               
+            </ul>
+        </div>
+        <div class="cursor"></div>
+    </div>
+</nav>
+
+        <!-- Hero Section -->
+        <div class="container text-center py-5">
+            <div class="head2">
+                <h1 class="display-4">Tobacco-Free in 30 Days with NO CRAVINGS</h1>
+                <p id="motivates" class="lead mt-3">
+                    A personalised app-based program LungsLife offers a step-by-step, scientifically-backed approach tailored to your unique needs, ensuring a smooth transition to a healthier, tobacco-free life. The app provides engaging and interactive content, daily motivations, and powerful tools to help you stay focused and committed to your goal. With LungsLife, you'll gain confidence and support needed to overcome any hurdles, while building lasting habits for a smoke-free future.
+                </p>
+            </div>
+        </div>
+
+        <!-- Calculator Section -->
+        <div class="container py-5">
+            <div class="row justify-content-center bg-dark rounded p-4">
+                <div class="col-md-4 text-center">
+                    <img class="smokeboy img-fluid mb-3" src="{% static 'fillform/images/sb.png' %}" alt="smoking illustration">
+                </div>
+                <div class="col-md-8">
+                    <h1 class="display-6 text-center mb-4">Calculate Your Smoking Costs: The Price of a Deadly Habit</h1>
+                    <form class="row g-3" id="smokingForm">
+                        <div class="col-md-4">
+                            <label for="num" class="form-label">How many years</label>
+                            <input type="number" class="form-control" id="num" placeholder="Enter years" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="dayk" class="form-label">How many in a day</label>
+                            <input type="number" class="form-control" id="dayk" placeholder="Enter cigarettes per day" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="price" class="form-label">Price of one</label>
+                            <input type="number" class="form-control" id="price" placeholder="Enter price per cigarette" required>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button type="submit" id="btnc" class="btn btn-primary mt-3">Calculate</button>
+                        </div>
+                        <div id="result" class="col-12 text-center mt-3"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about-section" class="container py-5">
+        <h1 class="display-5 text-center mb-4">About LungsLife :-</h1>
+        <p class="lead text-center mb-5">
+            LungsLife is your personal quit-smoking and tobacco-free assistant, ready to help you break free from addiction and embrace a healthier life quickly and effectively. From providing personalized plans to offering daily motivation, LungsLife is designed to support you every step of the way and make your journey to a smoke-free life easier and permanent.
+        </p>
+        <h2 class="display-6 text-center mb-4">We Provide :-</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 text-dark">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Personalized Quit Plan</h4>
+                        <p class="card-text">Get a step-by-step plan tailored to your needs, making your journey to a tobacco-free life simple and effective.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 text-dark">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Daily Motivations</h4>
+                        <p class="card-text">Stay inspired with daily tips and reminders that keep you focused and committed to a healthier lifestyle.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 text-dark">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Support & Guidance</h4>
+                        <p class="card-text">Access expert advice and resources anytime to help you overcome challenges and stay on track.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 30-Day Program Section -->
+    <div id="program-section" class="container py-5">
+        <h1 class="display-5 text-center mb-4">Your 30-Day Quit Program :-</h1>
+        <p class="lead text-center mb-5">
+            Follow this 30-day program to break free from your smoking addiction. Each day includes actionable steps, mindfulness exercises, and motivational tips to help you stay on track and manage cravings effectively.
+        </p>
+        <div class="accordion" id="programAccordion">
+            <!-- Day 1 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#day1" aria-expanded="true" aria-controls="day1">
+                        Day 1: Set Your Intention
+                    </button>
+                </h2>
+                <div id="day1" class="accordion-collapse collapse show" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Commit to quitting and understand your "why."</p>
+                        <ul>
+                            <li>Write down your reasons for quitting (e.g., health, family, financial savings).</li>
+                            <li>Clear your space of smoking triggers (e.g., ashtrays, lighters).</li>
+                            <li><strong>Mindfulness Exercise:</strong> Spend 5 minutes meditating on your commitment. Visualize a healthier, smoke-free you.</li>
+                            <li><strong>Motivation:</strong> "Today is the first step toward a new you. You're stronger than your cravings!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day2" aria-expanded="false" aria-controls="day2">
+                        Day 2: Identify Triggers
+                    </button>
+                </h2>
+                <div id="day2" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Recognize situations that make you want to smoke.</p>
+                        <ul>
+                            <li>Keep a journal of when you feel the urge to smoke (e.g., after meals, during stress).</li>
+                            <li>Replace one trigger with a healthy habit (e.g., drink water instead of smoking after coffee).</li>
+                            <li><strong>Mindfulness Exercise:</strong> Practice deep breathing for 3 minutes when a craving hits.</li>
+                            <li><strong>Motivation:</strong> "You’re learning your patterns—knowledge is power!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day3" aria-expanded="false" aria-controls="day3">
+                        Day 3: Build a Support System
+                    </button>
+                </h2>
+                <div id="day3" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Connect with people who support your journey.</p>
+                        <ul>
+                            <li>Tell a friend or family member about your quit plan and ask for their encouragement.</li>
+                            <li>Join an online community or forum for quitting smoking.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Reflect on how your loved ones will benefit from your healthier lifestyle.</li>
+                            <li><strong>Motivation:</strong> "You’re not alone—your support system has your back!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 4 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day4" aria-expanded="false" aria-controls="day4">
+                        Day 4: Stay Busy
+                    </button>
+                </h2>
+                <div id="day4" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Keep your mind occupied to reduce cravings.</p>
+                        <ul>
+                            <li>Plan a busy day with activities you enjoy (e.g., a hobby, exercise, or a walk).</li>
+                            <li>Chew gum or eat a healthy snack when you feel the urge to smoke.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Focus on the present moment—notice 5 things around you to ground yourself.</li>
+                            <li><strong>Motivation:</strong> "Distraction is your friend—stay active and keep cravings at bay!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 5 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day5" aria-expanded="false" aria-controls="day5">
+                        Day 5: Reward Yourself
+                    </button>
+                </h2>
+                <div id="day5" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Celebrate your progress so far.</p>
+                        <ul>
+                            <li>Use the money you’ve saved from not buying cigarettes to treat yourself (e.g., a movie, a meal).</li>
+                            <li>Reflect on how your body feels better already (e.g., better breathing, more energy).</li>
+                            <li><strong>Mindfulness Exercise:</strong> Write down 3 things you’re proud of achieving this week.</li>
+                            <li><strong>Motivation:</strong> "You’ve made it 5 days—reward yourself for your hard work!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 6 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day6" aria-expanded="false" aria-controls="day6">
+                        Day 6: Practice Stress Management
+                    </button>
+                </h2>
+                <div id="day6" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Learn to manage stress without smoking.</p>
+                        <ul>
+                            <li>Try a stress-relief technique like yoga or progressive muscle relaxation.</li>
+                            <li>Identify a stress trigger and create a plan to address it (e.g., take a walk instead of smoking).</li>
+                            <li><strong>Mindfulness Exercise:</strong> Do a 5-minute body scan meditation to release tension.</li>
+                            <li><strong>Motivation:</strong> "You don’t need cigarettes to cope—new habits are forming!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 7 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day7" aria-expanded="false" aria-controls="day7">
+                        Day 7: Reflect on Your First Week
+                    </button>
+                </h2>
+                <div id="day7" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Review your progress and adjust your strategy.</p>
+                        <ul>
+                            <li>Look back at your journal—what triggers were hardest? How did you handle them?</li>
+                            <li>Celebrate completing your first week with a small reward.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Spend 5 minutes visualizing your smoke-free future.</li>
+                            <li><strong>Motivation:</strong> "One week down—you’re a quitter in the best way!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 8 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day8" aria-expanded="false" aria-controls="day8">
+                        Day 8: Focus on Physical Activity
+                    </button>
+                </h2>
+                <div id="day8" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Use exercise to boost your mood and reduce cravings.</p>
+                        <ul>
+                            <li>Go for a 20-minute walk, jog, or workout session.</li>
+                            <li>Notice how exercise makes your body feel stronger and more energized.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Pay attention to your breathing while exercising—feel the fresh air in your lungs.</li>
+                            <li><strong>Motivation:</strong> "Your body is healing—keep moving forward!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 9 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day9" aria-expanded="false" aria-controls="day9">
+                        Day 9: Replace Smoking with a New Habit
+                    </button>
+                </h2>
+                <div id="day9" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Create a positive habit to replace smoking.</p>
+                        <ul>
+                            <li>Start a new hobby, like drawing, cooking, or gardening, to occupy your hands and mind.</li>
+                            <li>Keep healthy snacks (e.g., carrots, nuts) handy for when cravings strike.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Focus on the sensory experience of your new habit—what do you see, smell, or feel?</li>
+                            <li><strong>Motivation:</strong> "New habits are building a new you!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 10 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day10" aria-expanded="false" aria-controls="day10">
+                        Day 10: Revisit Your "Why"
+                    </button>
+                </h2>
+                <div id="day10" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Reconnect with your reasons for quitting.</p>
+                        <ul>
+                            <li>Reread the reasons you wrote on Day 1—add any new motivations you’ve discovered.</li>
+                            <li>Share your progress with a supportive friend or family member.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Meditate for 5 minutes, focusing on your core reason for quitting.</li>
+                            <li><strong>Motivation:</strong> "Your ‘why’ is your strength—hold onto it!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 11 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day11" aria-expanded="false" aria-controls="day11">
+                        Day 11: Practice Gratitude
+                    </button>
+                </h2>
+                <div id="day11" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Shift your mindset to positivity.</p>
+                        <ul>
+                            <li>Write down 5 things you’re grateful for in your life right now.</li>
+                            <li>Avoid situations that might tempt you to smoke today.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Spend 5 minutes reflecting on how quitting improves your life.</li>
+                            <li><strong>Motivation:</strong> "Gratitude keeps you grounded—focus on the good!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 12 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day12" aria-expanded="false" aria-controls="day12">
+                        Day 12: Manage Cravings with Distraction
+                    </button>
+                </h2>
+                <div id="day12" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Use distraction to overcome cravings.</p>
+                        <ul>
+                            <li>When a craving hits, play a quick game on your phone or listen to a favorite song.</li>
+                            <li>Drink a glass of water slowly to shift your focus.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Count backward from 100 by 7s to distract your mind.</li>
+                            <li><strong>Motivation:</strong> "Cravings pass—distract yourself and stay strong!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 13 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day13" aria-expanded="false" aria-controls="day13">
+                        Day 13: Improve Your Environment
+                    </button>
+                </h2>
+                <div id="day13" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Create a smoke-free environment.</p>
+                        <ul>
+                            <li>Clean your car, home, or workspace to remove any lingering smoke smell.</li>
+                            <li>Add air-purifying plants to your space for a fresh vibe.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Take 5 deep breaths in your refreshed space, appreciating the clean air.</li>
+                            <li><strong>Motivation:</strong> "A fresh environment supports a fresh start!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 14 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day14" aria-expanded="false" aria-controls="day14">
+                        Day 14: Celebrate Two Weeks
+                    </button>
+                </h2>
+                <div id="day14" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Acknowledge your progress after two weeks.</p>
+                        <ul>
+                            <li>Treat yourself to something special with the money you’ve saved.</li>
+                            <li>Reflect on how your health has improved (e.g., better taste, smell, breathing).</li>
+                            <li><strong>Mindfulness Exercise:</strong> Write a letter to your future self about how proud you are.</li>
+                            <li><strong>Motivation:</strong> "Two weeks smoke-free—you’re halfway there!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 15 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day15" aria-expanded="false" aria-controls="day15">
+                        Day 15: Focus on Nutrition
+                    </button>
+                </h2>
+                <div id="day15" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Support your body with healthy eating.</p>
+                        <ul>
+                            <li>Eat a balanced meal with plenty of fruits and vegetables to aid detoxification.</li>
+                            <li>Avoid sugary snacks that might trigger cravings.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Savor each bite of a healthy meal, focusing on the flavors.</li>
+                            <li><strong>Motivation:</strong> "Fuel your body with goodness—it’s healing from within!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 16 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day16" aria-expanded="false" aria-controls="day16">
+                        Day 16: Strengthen Your Resolve
+                    </button>
+                </h2>
+                <div id="day16" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Build mental resilience against cravings.</p>
+                        <ul>
+                            <li>Practice saying “no” to smoking in front of a mirror to build confidence.</li>
+                            <li>Remind yourself of the money you’ve saved using the calculator on the homepage.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Visualize a craving as a wave—watch it rise and fall without acting on it.</li>
+                            <li><strong>Motivation:</strong> "Your willpower is growing stronger every day!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 17 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day17" aria-expanded="false" aria-controls="day17">
+                        Day 17: Connect with Nature
+                    </button>
+                </h2>
+                <div id="day17" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Use nature to reduce stress and cravings.</p>
+                        <ul>
+                            <li>Spend 30 minutes outside—walk in a park or sit by a tree.</li>
+                            <li>Focus on the fresh air filling your lungs instead of smoke.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Practice grounding by feeling the grass or earth under your feet.</li>
+                            <li><strong>Motivation:</strong> "Nature is your ally—breathe in its healing power!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 18 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day18" aria-expanded="false" aria-controls="day18">
+                        Day 18: Address Emotional Triggers
+                    </button>
+                </h2>
+                <div id="day18" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Handle emotions without smoking.</p>
+                        <ul>
+                            <li>Identify an emotion that makes you want to smoke (e.g., boredom, anger).</li>
+                            <li>Try journaling or talking to a friend to process that emotion instead.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Label your emotion (e.g., “I feel stressed”) and let it pass without acting on it.</li>
+                            <li><strong>Motivation:</strong> "You’re stronger than your emotions—don’t let them control you!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 19 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day19" aria-expanded="false" aria-controls="day19">
+                        Day 19: Boost Your Confidence
+                    </button>
+                </h2>
+                <div id="day19" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Build self-belief in your ability to quit.</p>
+                        <ul>
+                            <li>Write down 3 ways you’ve grown stronger since starting this program.</li>
+                            <li>Share your progress with your support system to receive encouragement.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Stand tall and repeat affirmations like “I am smoke-free and strong.”</li>
+                            <li><strong>Motivation:</strong> "You’ve come so far—believe in yourself!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 20 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day20" aria-expanded="false" aria-controls="day20">
+                        Day 20: Plan for Social Situations
+                    </button>
+                </h2>
+                <div id="day20" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Prepare for social settings where smoking might be tempting.</p>
+                        <ul>
+                            <li>Practice polite ways to decline a cigarette (e.g., “No thanks, I’ve quit!”).</li>
+                            <li>Bring a drink or snack to keep your hands busy at a social event.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Visualize yourself confidently saying “no” in a social setting.</li>
+                            <li><strong>Motivation:</strong> "You can enjoy social time without smoking—you’ve got this!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 21 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day21" aria-expanded="false" aria-controls="day21">
+                        Day 21: Reflect on Three Weeks
+                    </button>
+                </h2>
+                <div id="day21" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Celebrate three weeks of progress.</p>
+                        <ul>
+                            <li>Look back at your journal—how have your cravings changed?</li>
+                            <li>Reward yourself with a meaningful treat (e.g., a new book, a spa day).</li>
+                            <li><strong>Mindfulness Exercise:</strong> Spend 5 minutes visualizing your life in 6 months, completely smoke-free.</li>
+                            <li><strong>Motivation:</strong> "Three weeks strong—you’re unstoppable!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 22 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day22" aria-expanded="false" aria-controls="day22">
+                        Day 22: Focus on Long-Term Goals
+                    </button>
+                </h2>
+                <div id="day22" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Shift your focus to the future.</p>
+                        <ul>
+                            <li>Write down a long-term goal you can achieve with the money and energy you’re saving (e.g., a vacation).</li>
+                            <li>Break that goal into smaller steps to work on over the next few months.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Imagine achieving that goal and how it will feel.</li>
+                            <li><strong>Motivation:</strong> "Quitting opens doors to a brighter future!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 23 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day23" aria-expanded="false" aria-controls="day23">
+                        Day 23: Stay Hydrated
+                    </button>
+                </h2>
+                <div id="day23" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Use hydration to support your body’s recovery.</p>
+                        <ul>
+                            <li>Drink at least 8 glasses of water today to flush out toxins.</li>
+                            <li>Carry a water bottle with you to sip whenever you feel a craving.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Focus on the sensation of water as you drink—feel it refresh you.</li>
+                            <li><strong>Motivation:</strong> "Water cleanses your body and your mind—stay hydrated!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 24 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day24" aria-expanded="false" aria-controls="day24">
+                        Day 24: Rebuild Your Routine
+                    </button>
+                </h2>
+                <div id="day24" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Create a smoke-free daily routine.</p>
+                        <ul>
+                            <li>Replace your old smoking breaks with new rituals (e.g., a quick stretch, a cup of tea).</li>
+                            <li>Plan your day with structured activities to avoid idle time.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Notice how your new routine feels more empowering.</li>
+                            <li><strong>Motivation:</strong> "Your new routine is your foundation for success!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 25 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day25" aria-expanded="false" aria-controls="day25">
+                        Day 25: Strengthen Your Support Network
+                    </button>
+                </h2>
+                <div id="day25" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Deepen connections with your support system.</p>
+                        <ul>
+                            <li>Check in with your support group or a friend—share your challenges and successes.</li>
+                            <li>Offer encouragement to someone else who’s trying to quit.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Reflect on how your support system has helped you.</li>
+                            <li><strong>Motivation:</strong> "Together, we’re stronger—lean on your community!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 26 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day26" aria-expanded="false" aria-controls="day26">
+                        Day 26: Focus on Self-Care
+                    </button>
+                </h2>
+                <div id="day26" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Prioritize your well-being.</p>
+                        <ul>
+                            <li>Take a relaxing bath, get a massage, or do something that makes you feel pampered.</li>
+                            <li>Avoid stressful situations that might trigger a craving.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Spend 5 minutes practicing gratitude for your body’s healing.</li>
+                            <li><strong>Motivation:</strong> "You deserve to feel good—treat yourself with care!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 27 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day27" aria-expanded="false" aria-controls="day27">
+                        Day 27: Prepare for Slip-Ups
+                    </button>
+                </h2>
+                <div id="day27" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Create a plan for potential setbacks.</p>
+                        <ul>
+                            <li>Write down what you’ll do if you slip up (e.g., call a friend, reread your “why”).</li>
+                            <li>Remind yourself that a slip-up doesn’t mean failure—you can get back on track.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Visualize yourself recovering quickly from a slip-up.</li>
+                            <li><strong>Motivation:</strong> "Mistakes don’t define you—your resilience does!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 28 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day28" aria-expanded="false" aria-controls="day28">
+                        Day 28: Celebrate Small Wins
+                    </button>
+                </h2>
+                <div id="day28" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Recognize all your achievements.</p>
+                        <ul>
+                            <li>List all the small victories you’ve had this month (e.g., saying no to a cigarette, surviving a craving).</li>
+                            <li>Share your wins with your support system.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Reflect on how far you’ve come since Day 1.</li>
+                            <li><strong>Motivation:</strong> "Every win counts—you’re almost there!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 29 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day29" aria-expanded="false" aria-controls="day29">
+                        Day 29: Plan for the Future
+                    </button>
+                </h2>
+                <div id="day29" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Set goals for your smoke-free life.</p>
+                        <ul>
+                            <li>Write down how you’ll maintain your smoke-free lifestyle after this program.</li>
+                            <li>Plan a big reward for completing the 30 days (e.g., a trip, a new hobby).</li>
+                            <li><strong>Mindfulness Exercise:</strong> Visualize your life in 1 year—completely free of smoking.</li>
+                            <li><strong>Motivation:</strong> "The future is yours—plan for greatness!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 30 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day30" aria-expanded="false" aria-controls="day30">
+                        Day 30: Celebrate Your Victory!
+                    </button>
+                </h2>
+                <div id="day30" class="accordion-collapse collapse" data-bs-parent="#programAccordion">
+                    <div class="accordion-body text-dark">
+                        <p><strong>Goal:</strong> Celebrate 30 days of being smoke-free!</p>
+                        <ul>
+                            <li>Throw a small celebration with friends or family to mark your achievement.</li>
+                            <li>Reflect on how much healthier, happier, and stronger you feel.</li>
+                            <li><strong>Mindfulness Exercise:</strong> Write a letter to your past self, thanking them for starting this journey.</li>
+                            <li><strong>Motivation:</strong> "You did it! You’re smoke-free and unstoppable—congratulations!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+ <div class="mainbox py-5" id="contact-section">
+    <div class="container text-center">
+        <h1 class="display-5 mb-4">Contact Us</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card text-dark">
+                    <div class="card-body">
+                        <h1 class="card-title display-6 mb-4">Send Message</h1>
+
+                        
+                        <form action="https://formspree.io/f/xqaqwzpn" id="Contact-form" method="POST">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea name="message" class="form-control" rows="5" placeholder="Message" style="resize: none;" required></textarea>
+                            </div>
+                            <button type="submit" id="btnn" class="btn btn-primary w-100">Send</button>
+                            <p id="Contact-message" class="mt-3"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Footer -->
+    <footer id="footer" class="py-4">
+        <div class="container text-center">
+            <p>© 2024 Lungs-Life. All Rights Reserved.</p>
+            <p>Contact us: <a href="mailto:support@lungslife.com" class="text-info">support@lungslife.com</a></p>
+            <p>Follow us on: 
+                <a href="#" class="text-info">Facebook</a> | 
+                <a href="#" class="text-info">Twitter</a> | 
+                <a href="#" class="text-info">LinkedIn</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="{% static 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js'"></script>
+    <script src="{% static 'fillform/js/logic.js' %}"></script>
+   
+    
+
+</body>
+</html>
